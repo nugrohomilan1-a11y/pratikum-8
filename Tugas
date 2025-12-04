@@ -1,0 +1,79 @@
+class DataMahasiswa:
+    def __init__(self):
+        self.data = []
+
+    # Method tambah() untuk menambah data
+    def tambah(self, nama, nilai):
+        mahasiswa = {
+            "nama": nama,
+            "nilai": nilai
+        }
+        self.data.append(mahasiswa)
+        print("Data berhasil ditambahkan!\n")
+
+    # Method tampilkan() untuk menampilkan data
+    def tampilkan(self):
+        if len(self.data) == 0:
+            print("Data mahasiswa masih kosong!\n")
+        else:
+            print("=== Daftar Nilai Mahasiswa ===")
+            for i, mhs in enumerate(self.data, start=1):
+                print(f"{i}. Nama: {mhs['nama']}, Nilai: {mhs['nilai']}")
+            print()
+
+    # Method hapus(nama) untuk menghapus data berdasarkan nama
+    def hapus(self, nama):
+        for mhs in self.data:
+            if mhs["nama"].lower() == nama.lower():
+                self.data.remove(mhs)
+                print("Data berhasil dihapus!\n")
+                return
+        print("Data tidak ditemukan!\n")
+
+    # Method ubah(nama) untuk mengubah data berdasarkan nama
+    def ubah(self, nama):
+        for mhs in self.data:
+            if mhs["nama"].lower() == nama.lower():
+                nilai_baru = input("Masukkan nilai baru: ")
+                mhs["nilai"] = nilai_baru
+                print("Data berhasil diubah!\n")
+                return
+        print("Data tidak ditemukan!\n")
+
+
+# Program Utama
+mahasiswa = DataMahasiswa()
+
+while True:
+    print("=== MENU ===")
+    print("1. Tambah Data")
+    print("2. Tampilkan Data")
+    print("3. Hapus Data")
+    print("4. Ubah Data")
+    print("5. Keluar")
+
+    pilihan = input("Pilih menu (1-5): ")
+
+    if pilihan == "1":
+        nama = input("Masukkan nama mahasiswa: ")
+        nilai = input("Masukkan nilai mahasiswa: ")
+        mahasiswa.tambah(nama, nilai)
+
+    elif pilihan == "2":
+        mahasiswa.tampilkan()
+
+    elif pilihan == "3":
+        nama = input("Masukkan nama mahasiswa yang akan dihapus: ")
+        mahasiswa.hapus(nama)
+
+    elif pilihan == "4":
+        nama = input("Masukkan nama mahasiswa yang akan diubah: ")
+        mahasiswa.ubah(nama)
+
+    elif pilihan == "5":
+        print("Program selesai.")
+        break
+
+    else:
+        print("Pilihan tidak valid!\n")
+
